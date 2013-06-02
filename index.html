@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title> Gamoogappix testing... </title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/gamooga.js"></script>
+    <script type="text/javascript" src="./js/mini.js"></script>
+    <script type="text/javascript">
+
+      var channel_complement = "_channel_timets"
+      var chat_complement = "_chat_timets"
+      function logThis(t) {
+        console.log(t)
+        if (t == "Jappix Mini is now connected.") {
+          $(".jm_name").each(function(i){
+            console.log($(this).text($(this).text().replace(chat_complement,"")));
+            var chat_text = $(this).text();
+            chat_text = chat_text.replace(chat_complement,"");
+            $(this).text(i==0?"<%- t.channel_chat %>":chat_text);
+          })
+
+          $(".jm_nick").text("<%- t.channel_chat %>");
+          $(".jm_logo").replaceWith('<div class="jm_status_text"><%= t.change_status %></div>')
+        }
+      }
+      var owner = "<%- owner %>";
+
+
+
+
+
+
+      jQuery(document).ready(function() {
+
+          
+        MINI_GROUPCHATS = ["<%- user_name %>"+chat_complement,"<%- user_name %>" + channel_complement];
+
+        MINI_NICKNAME = "<%- log_name %>";
+        MINI_ANIMATE = true;
+
+
+        // var domain_bosh = "0.0.0.0:25280";
+        // var domain_bosh = "http://localhost:5222";
+        // var domain_bosh = "http://jabber.web.id/";
+        // window.HOST_ANONYMOUS = domain_bosh;
+        // window.HOST_BOSH_MINI = domain_bosh;
+
+
+
+        JAPPIX_STATIC="./";
+        HOST_BOSH="https://bind.jappix.com/"
+        launchMini(true, false, "anonymous.jappix.com", "-username-", "-password-");
+      });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
